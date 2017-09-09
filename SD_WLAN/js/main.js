@@ -56,6 +56,7 @@ function showFileList(path) {
     // Output a link to the parent directory if it is not the root directory.
     if (path != "/") {
         $("#list").prepend($("<div />").append($('<a href="javascript:void(0)" class="dir" data-dirname=".."><img src=/SD_WLAN/images/return.png width=15>..</a>')));
+        $("#list").prepend($("<strong>"+path+"</strong><hr />"));
     }
 
     // display directories
@@ -182,6 +183,8 @@ function getFileList(dir) {
     $.get(url, function (data) {
         // Save the current path.
         currentPath = nextPath;
+
+        $('#fileUploadSpan').html("File to upload (into "+currentPath+")");
 
         // Split lines by new line characters.
         wlansd = data.split(/\n/g);
